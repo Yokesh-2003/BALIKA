@@ -171,37 +171,38 @@
   .heroContainer {
     width: 100%;
     height: auto;
-    aspect-ratio: 1600 / 599;
+    aspect-ratio: 3 / 3; /* 3:3 square aspect ratio on mobile */
     min-height: unset;
   }
 
   .slideImage {
-    object-fit: contain;
+    object-fit: cover; /* 3:3 zoom filling the square frame */
+    object-position: center;
   }
 
   .paginationContainer {
-    bottom: 8px;
-    gap: 8px;
+    bottom: 18px;
+    gap: 10px;
   }
 
   .dotWrapper {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
   }
 
   .dot {
-    width: 4px;
-    height: 4px;
+    width: 5px;
+    height: 5px;
   }
 
   .dotWrapper.active .dotRing {
-    width: 14px;
-    height: 14px;
-    border-width: 1.2px;
+    width: 16px;
+    height: 16px;
+    border-width: 1.4px;
   }
 
   .dotWrapper.active .innerDot {
-    width: 3.5px;
-    height: 3.5px;
+    width: 4.5px;
+    height: 4.5px;
   }
 }
