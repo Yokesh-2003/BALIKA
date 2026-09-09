@@ -1,0 +1,207 @@
+.heroContainer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 640px;
+  overflow: hidden;
+  background-color: #0d0d0d;
+}
+
+.slidesWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 6s cubic-bezier(0.1, 1, 0.1, 1);
+  transform: scale(1.05);
+  will-change: transform, opacity;
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.slideImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+/* Gradients for readability & contrast */
+.overlayGradients {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: 
+    /* Top subtle vignette for navbar */
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.1) 25%, transparent 45%),
+    /* Bottom subtle vignette for pagination */
+    linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 20%);
+}
+
+/* --- Bottom Slider Pagination --- */
+.paginationContainer {
+  position: absolute;
+  bottom: 42px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 20;
+}
+
+.dotWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.dotWrapper:hover {
+  transform: scale(1.2);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.55);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dotWrapper.active .dotRing {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.8px solid rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.dotWrapper.active .innerDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #ffffff;
+}
+
+/* Subtle navigation side controls */
+.navArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  z-index: 15;
+  transition: all 0.25s ease;
+}
+
+.navArrow:hover {
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.45);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.arrowPrev {
+  left: 24px;
+}
+
+.arrowNext {
+  right: 24px;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 1024px) {
+  .navArrow {
+    display: none; /* keep clean on tablets/mobile, gestures used instead */
+  }
+}
+
+@media (max-width: 768px) {
+  .heroContainer {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1600 / 599;
+    min-height: unset;
+  }
+
+  .slideImage {
+    object-fit: contain;
+  }
+
+  .paginationContainer {
+    bottom: 8px;
+    gap: 8px;
+  }
+
+  .dotWrapper {
+    width: 16px;
+    height: 16px;
+  }
+
+  .dot {
+    width: 4px;
+    height: 4px;
+  }
+
+  .dotWrapper.active .dotRing {
+    width: 14px;
+    height: 14px;
+    border-width: 1.2px;
+  }
+
+  .dotWrapper.active .innerDot {
+    width: 3.5px;
+    height: 3.5px;
+  }
+}

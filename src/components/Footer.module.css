@@ -1,0 +1,212 @@
+.footer {
+  width: 100%;
+  background-color: #000000;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  padding: 64px 48px 24px;
+  border-top: 1px solid #1a1a1a;
+}
+
+/* Subtle decorative motif in the background like in Photo 2 */
+.decorativeWatermark {
+  position: absolute;
+  top: 10px;
+  right: -40px;
+  width: 320px;
+  height: 320px;
+  color: #222225;
+  opacity: 0.35;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.footerContainer {
+  position: relative;
+  z-index: 1;
+  max-width: 1360px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1.6fr;
+  gap: 48px;
+  margin-bottom: 50px;
+}
+
+/* --- Brand Column --- */
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.logoWrapper {
+  margin-bottom: 28px;
+}
+
+.logoImage {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.socialRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.socialBtn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: #111113;
+  border: 1px solid #2a2a2e;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  text-decoration: none;
+}
+
+.socialBtn:hover {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #000000;
+  transform: translateY(-2px);
+}
+
+/* --- Navigation & Contact Columns --- */
+.navCol,
+.contactCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.titleWrapper {
+  margin-bottom: 22px;
+}
+
+.colTitle {
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: #ffffff;
+  display: inline-block;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #ffffff; /* Underline matching Photo 2 style */
+  margin: 0;
+}
+
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.navLink {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: #d1d1d6;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.navLink:hover {
+  color: #ffffff;
+  transform: translateX(4px);
+}
+
+/* --- Contact Info List --- */
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: #d1d1d6;
+}
+
+.contactIcon {
+  color: #ffffff;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.contactLink {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contactLink:hover {
+  color: #ffffff;
+}
+
+/* --- Bottom Copyright Bar --- */
+.bottomBar {
+  position: relative;
+  z-index: 1;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding-top: 24px;
+  border-top: 1px solid #1a1a1c;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.copyrightText {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: #8e8e93;
+  margin: 0;
+}
+
+.poweredBy {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* --- Responsive Layout --- */
+@media (max-width: 1024px) {
+  .footerContainer {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 48px 24px 24px;
+  }
+
+  .footerContainer {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-bottom: 36px;
+  }
+
+  .bottomBar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+}

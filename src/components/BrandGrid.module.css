@@ -1,0 +1,138 @@
+.brandSection {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 50px 0;
+  overflow: hidden;
+  position: relative;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* Subtle fade gradient on sides for seamless infinite illusion */
+.brandSection::before,
+.brandSection::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.brandSection::before {
+  left: 0;
+  background: linear-gradient(to right, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.brandSection::after {
+  right: 0;
+  background: linear-gradient(to left, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.marqueeTrack {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  /* Running from left to right continuously */
+  animation: marqueeLeftToRight 22s linear infinite;
+  will-change: transform;
+}
+
+/* NEVER stop on hover as requested */
+.marqueeTrack:hover,
+.brandSection:hover .marqueeTrack {
+  animation-play-state: running !important;
+}
+
+@keyframes marqueeLeftToRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.brandItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 44px;
+  flex-shrink: 0;
+  cursor: default;
+  transition: transform 0.3s ease;
+}
+
+.brandItem:hover {
+  transform: scale(1.06);
+}
+
+.imageWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 124px;
+  height: 124px;
+  border-radius: 50%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  background-color: #ffffff;
+  transition: box-shadow 0.3s ease;
+}
+
+.brandItem:hover .imageWrapper {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+}
+
+.brandImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+  /* Ensure full original colors, strictly NO black and white filter */
+  filter: none !important;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .brandSection {
+    padding: 36px 0;
+  }
+
+  .brandSection::before,
+  .brandSection::after {
+    width: 50px;
+  }
+
+  .brandItem {
+    margin: 0 24px;
+  }
+
+  .imageWrapper {
+    width: 90px;
+    height: 90px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+  }
+
+  .marqueeTrack {
+    animation-duration: 18s;
+  }
+}
+
+@media (max-width: 480px) {
+  .brandSection {
+    padding: 28px 0;
+  }
+
+  .brandItem {
+    margin: 0 18px;
+  }
+
+  .imageWrapper {
+    width: 75px;
+    height: 75px;
+  }
+}

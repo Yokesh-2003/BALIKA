@@ -1,0 +1,138 @@
+.floatingActionGroup {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 990;
+}
+
+/* Scroll to Top Up Arrow Button - positioned next to WhatsApp */
+.scrollTopBtn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #161618;
+  border: 1px solid #2e2e32;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px) scale(0.9);
+  transition: opacity 0.3s ease, 
+              visibility 0.3s ease, 
+              transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              background-color 0.2s ease, 
+              border-color 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.scrollTopBtn.showBtn {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.scrollTopBtn:hover {
+  background-color: #242428;
+  border-color: #48484e;
+  color: #ffffff;
+  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+.scrollTopBtn:active {
+  transform: scale(0.95);
+}
+
+/* WhatsApp Floating Button */
+.whatsappBtn {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background-color: #25D366;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+  text-decoration: none;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              box-shadow 0.3s ease, 
+              background-color 0.2s ease;
+}
+
+.whatsappBtn:hover {
+  transform: scale(1.08) translateY(-3px);
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.55);
+  background-color: #20ba59;
+}
+
+.whatsappBtn:active {
+  transform: scale(0.95);
+}
+
+.whatsappIcon {
+  width: 32px;
+  height: 32px;
+  fill: currentColor;
+}
+
+/* Subtle breathing glow ring */
+.pulseRing {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.6);
+  animation: pulse 2.5s infinite;
+  pointer-events: none;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .floatingActionGroup {
+    bottom: 20px;
+    right: 18px;
+    gap: 10px;
+  }
+
+  .scrollTopBtn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .scrollTopBtn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .whatsappBtn {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .whatsappIcon {
+    width: 28px;
+    height: 28px;
+  }
+}
