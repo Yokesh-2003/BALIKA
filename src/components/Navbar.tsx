@@ -5,13 +5,40 @@ import Link from "next/link";
 import { X, ArrowRight } from "lucide-react";
 import styles from "./Navbar.module.css";
 
+const navLinks = [
+  { label: "HOME", href: "#", id: "home" },
+  { label: "ABOUT US", href: "#about", id: "about" },
+  { label: "PRODUCTS", href: "#products", id: "products" },
+  { label: "PROJECTS", href: "#projects", id: "projects" },
+  { label: "CONTACT US", href: "#contact", id: "contact" },
+];
+
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState("home");
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+
+      const scrollPos = window.scrollY + 220;
+      const aboutEl = document.getElementById("about");
+      const productsEl = document.getElementById("products");
+      const projectsEl = document.getElementById("projects");
+      const contactEl = document.getElementById("contact");
+
+      if (contactEl && scrollPos >= contactEl.offsetTop) {
+        setActiveItem("contact");
+      } else if (projectsEl && scrollPos >= projectsEl.offsetTop) {
+        setActiveItem("projects");
+      } else if (productsEl && scrollPos >= productsEl.offsetTop) {
+        setActiveItem("products");
+      } else if (aboutEl && scrollPos >= aboutEl.offsetTop) {
+        setActiveItem("about");
+      } else {
+        setActiveItem("home");
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -22,7 +49,7 @@ export default function Navbar() {
     };
   }, []);
 
-  // Lock scroll when drawer is open
+  // Lock scroll when mobile drawer is open
   useEffect(() => {
     if (isDrawerOpen) {
       document.body.style.overflow = "hidden";
@@ -34,7 +61,7 @@ export default function Navbar() {
     };
   }, [isDrawerOpen]);
 
-  // Handle escape key
+  // Handle escape key for drawer
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -45,15 +72,14 @@ export default function Navbar() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  const navLinks = [
-    { label: "Home", href: "#" },
-    { label: "Architectural Lighting", href: "#suspended" },
-    { label: "Decorative Luminaires", href: "#surface" },
-    { label: "Commercial & Office", href: "#wall" },
-    { label: "Projects & Portfolio", href: "#projects" },
-    { label: "About Balika", href: "#about" },
-    { label: "Contact Us", href: "#contact" },
-  ];
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, id: string) => {
+    setActiveItem(id);
+    setIsDrawerOpen(false);
+    if (href === "#") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
 
   return (
     <>
@@ -61,7 +87,7 @@ export default function Navbar() {
         className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}
         id="main-navbar"
       >
-        {/* Left: Hamburger Menu */}
+        {/* Mobile Left: Hamburger Menu Button (hidden on PC) */}
         <button
           className={styles.menuBtn}
           onClick={() => setIsDrawerOpen(true)}
@@ -76,7 +102,7 @@ export default function Navbar() {
           <span className={styles.menuLabel}>MENU</span>
         </button>
 
-        {/* Center: Brand Logo */}
+        {/* Brand Logo (Left on PC, Centered on Mobile) */}
         <Link href="/" className={styles.logoLink} aria-label="Balika Home">
           <div className={styles.logoWrapper}>
             <img
@@ -93,31 +119,40 @@ export default function Navbar() {
             />
           </div>
         </Link>
+
+        {/* PC Desktop Navigation Links (Outside on PC, hidden on Mobile) */}
+        <nav className={styles.desktopNav} aria-label="Desktop Navigation">
+          {navLinks.map((item) => (
+            <Link
+              key={item.id}
+              href={item.href}
+              onClick={(e) => handleLinkClick(e, item.href, item.id)}
+              className={`${styles.desktopNavLink} ${activeItem === item.id ? styles.active : ""}`}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
       </header>
 
-      {/* Drawer Overlay */}
+      {/* Mobile Drawer Overlay */}
       <div
         className={`${styles.drawerBackdrop} ${isDrawerOpen ? styles.open : ""}`}
         onClick={() => setIsDrawerOpen(false)}
       />
 
-      {/* Side Menu Drawer */}
+      {/* Mobile Side Menu Drawer (Kept as it is for mobile) */}
       <aside
         className={`${styles.drawer} ${isDrawerOpen ? styles.open : ""}`}
         aria-label="Mobile Navigation"
       >
         <div className={styles.drawerHeader}>
-          <img
-            src="/logo-dark.png"
-            alt="balika"
-            className={styles.drawerLogo}
-          />
           <button
             className={styles.closeBtn}
             onClick={() => setIsDrawerOpen(false)}
             aria-label="Close menu"
           >
-            <X size={22} />
+            <X size={24} />
           </button>
         </div>
 
@@ -127,7 +162,7 @@ export default function Navbar() {
               key={idx}
               href={item.href}
               className={styles.drawerLink}
-              onClick={() => setIsDrawerOpen(false)}
+              onClick={(e) => handleLinkClick(e, item.href, item.id)}
             >
               <span>{item.label}</span>
               <ArrowRight size={18} opacity={0.6} />
@@ -136,9 +171,7 @@ export default function Navbar() {
         </nav>
 
         <div className={styles.drawerFooter}>
-          <p className={styles.drawerContact}>Balika Architectural Lighting</p>
-          <p>Inspiring creative minds with state-of-the-art illumination.</p>
-          <p>© {new Date().getFullYear()} Balika. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Balika. All rights reserved. Powered by yuyonix</p>
         </div>
       </aside>
     </>

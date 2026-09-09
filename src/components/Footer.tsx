@@ -204,7 +204,7 @@ export default function Footer() {
       {/* Bottom Bar with Powered by yuyonix */}
       <div className={styles.bottomBar}>
         <p className={styles.copyrightText}>
-          Copyright © {new Date().getFullYear()} Balika, All Rights Reserved.{" "}
+          © {new Date().getFullYear()} Balika. All rights reserved.{" "}
           <span className={styles.poweredBy}>Powered by yuyonix</span>
         </p>
       </div>

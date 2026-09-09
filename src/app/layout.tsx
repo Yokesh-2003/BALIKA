@@ -40,10 +40,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/logo.png" },
+      { url: "/logo-favicon.png" },
       { url: "/icon.png" },
     ],
-    apple: "/logo.png",
+    apple: "/apple-touch-icon.png",
   },
 };
 
@@ -55,7 +55,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/logo.png" type="image/png" />
+        <link rel="icon" href="/logo-favicon.png" type="image/png" />
       </head>
       <body>
         <Navbar />

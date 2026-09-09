@@ -34,7 +34,7 @@ const categories: CategoryItem[] = [
 
 export default function CategoryGrid() {
   return (
-    <section className={styles.categorySection} aria-label="Lighting Categories">
+    <section className={styles.categorySection} id="products" aria-label="Lighting Categories">
       <div className={styles.gridContainer}>
         {categories.map((item) => (
           <div
