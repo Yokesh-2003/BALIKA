@@ -189,19 +189,34 @@
 @media (max-width: 1024px) {
   .footerContainer {
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    gap: 40px 32px;
   }
 }
 
 @media (max-width: 768px) {
   .footer {
-    padding: 48px 24px 24px;
+    padding: 48px 20px 24px;
   }
 
   .footerContainer {
-    grid-template-columns: 1fr;
-    gap: 32px;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px 18px;
     margin-bottom: 36px;
+  }
+
+  /* Brand logo and social icons span full width */
+  .brandCol {
+    grid-column: span 2;
+  }
+
+  /* Our Products and Quick Links sit side-by-side next to each other */
+  .navCol {
+    grid-column: span 1;
+  }
+
+  /* Contact Info spans full width below */
+  .contactCol {
+    grid-column: span 2;
   }
 
   .bottomBar {
