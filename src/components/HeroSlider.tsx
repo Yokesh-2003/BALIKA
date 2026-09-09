@@ -49,18 +49,33 @@ const slides: SlideData[] = [
 ];
 
 export default function HeroSlider() {
+  const [isMobile, setIsMobile] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
 
-  const nextSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % slides.length);
+  // Detect mobile view (<= 768px)
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize, { passive: true });
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Exclude slider1.jpg on mobile alone
+  const activeSlides = isMobile ? slides.filter((s) => s.id !== 1) : slides;
+  const safeIndex = currentIndex % (activeSlides.length || 1);
+
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % activeSlides.length);
+  }, [activeSlides.length]);
+
   const prevSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
-  }, []);
+    setCurrentIndex((prev) => (prev - 1 + activeSlides.length) % activeSlides.length);
+  }, [activeSlides.length]);
 
   const goToSlide = (idx: number) => {
     setCurrentIndex(idx);
@@ -114,8 +129,8 @@ export default function HeroSlider() {
     >
       {/* Slides */}
       <div className={styles.slidesWrapper}>
-        {slides.map((slide, idx) => {
-          const isActive = idx === currentIndex;
+        {activeSlides.map((slide, idx) => {
+          const isActive = idx === safeIndex;
           return (
             <div
               key={slide.id}
@@ -159,8 +174,8 @@ export default function HeroSlider() {
         role="tablist"
         aria-label="Slider Pagination"
       >
-        {slides.map((slide, idx) => {
-          const isActive = idx === currentIndex;
+        {activeSlides.map((slide, idx) => {
+          const isActive = idx === safeIndex;
           return (
             <button
               key={slide.id}

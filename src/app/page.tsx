@@ -3,6 +3,7 @@ import AboutSection from "@/components/AboutSection";
 import CategoryGrid from "@/components/CategoryGrid";
 import BrandGrid from "@/components/BrandGrid";
 import ProjectsSlider from "@/components/ProjectsSlider";
+import ContactBanner from "@/components/ContactBanner";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -23,7 +24,10 @@ export default function Home() {
       {/* Our Projects Slider with images 1-6 */}
       <ProjectsSlider />
 
-      {/* Modern Dark Multi-Column Footer with Photo 1 content and Photo 2 design */}
+      {/* Get In Touch Call-To-Action Banner */}
+      <ContactBanner />
+
+      {/* Modern Dark Multi-Column Footer */}
       <Footer />
     </main>
   );

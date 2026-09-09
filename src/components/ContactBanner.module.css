@@ -1,0 +1,114 @@
+.bannerSection {
+  position: relative;
+  width: 100%;
+  background-image: 
+    linear-gradient(to right, rgba(10, 16, 22, 0.58) 0%, rgba(10, 16, 22, 0.38) 100%),
+    url('/contact-banner-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 68px 48px;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.bannerContainer {
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 760px;
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #ffffff;
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.description {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.65;
+  color: #f2f2f7;
+  margin: 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.actionWrapper {
+  flex-shrink: 0;
+}
+
+.contactBtn {
+  display: inline-block;
+  padding: 15px 42px;
+  border: 2px solid #ffffff;
+  background-color: transparent;
+  color: #ffffff;
+  font-family: var(--font-primary);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 0;
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+  white-space: nowrap;
+  backdrop-filter: blur(2px);
+}
+
+.contactBtn:hover {
+  background-color: #ffffff;
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.contactBtn:active {
+  transform: scale(0.98);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 860px) {
+  .bannerSection {
+    padding: 50px 24px;
+  }
+
+  .bannerContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+
+  .actionWrapper {
+    width: 100%;
+  }
+
+  .contactBtn {
+    width: 100%;
+    text-align: center;
+    padding: 14px 24px;
+  }
+}
