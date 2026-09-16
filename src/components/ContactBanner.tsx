@@ -20,7 +20,7 @@ export default function ContactBanner() {
 
         {/* Right: Contact Button */}
         <div className={styles.actionWrapper}>
-          <Link href="#contact" className={styles.contactBtn}>
+          <Link href="/contact" className={styles.contactBtn}>
             CONTACT US
           </Link>
         </div>

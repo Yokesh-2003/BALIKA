@@ -30,12 +30,14 @@ export default function Footer() {
         {/* Column 1: Logo & Social Media Icons */}
         <div className={styles.brandCol}>
           <div className={styles.logoWrapper}>
-            <img
-              src="/logo-white.png"
-              alt="Balika"
-              className={styles.logoImage}
-              draggable={false}
-            />
+            <Link href="/" aria-label="Balika Home">
+              <img
+                src="/logo-dark.png"
+                alt="Balika"
+                className={styles.logoImage}
+                draggable={false}
+              />
+            </Link>
           </div>
 
           <div className={styles.socialRow}>
@@ -100,27 +102,27 @@ export default function Footer() {
           </div>
           <ul className={styles.linkList}>
             <li>
-              <Link href="#suspended" className={styles.navLink}>
+              <Link href="/#suspended" className={styles.navLink}>
                 Suspended Lighting
               </Link>
             </li>
             <li>
-              <Link href="#surface" className={styles.navLink}>
+              <Link href="/#surface" className={styles.navLink}>
                 Surface Mounted
               </Link>
             </li>
             <li>
-              <Link href="#wall" className={styles.navLink}>
+              <Link href="/#wall" className={styles.navLink}>
                 Wall Luminaires
               </Link>
             </li>
             <li>
-              <Link href="#table" className={styles.navLink}>
+              <Link href="/#table" className={styles.navLink}>
                 Table & Accent
               </Link>
             </li>
             <li>
-              <Link href="#projects" className={styles.navLink}>
+              <Link href="/#projects" className={styles.navLink}>
                 Architectural Track
               </Link>
             </li>
@@ -139,29 +141,29 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="#about" className={styles.navLink}>
+              <Link href="/about" className={styles.navLink}>
                 About Us
               </Link>
             </li>
             <li>
-              <Link href="#products" className={styles.navLink}>
+              <Link href="/#products" className={styles.navLink}>
                 Products
               </Link>
             </li>
             <li>
-              <Link href="#projects" className={styles.navLink}>
+              <Link href="/projects" className={styles.navLink}>
                 Projects
               </Link>
             </li>
             <li>
-              <Link href="#contact" className={styles.navLink}>
+              <Link href="/contact" className={styles.navLink}>
                 Contact Us
               </Link>
             </li>
           </ul>
         </div>
 
-        {/* Column 4: Contact Info (Photo 1 content styled with Photo 2 layout) */}
+        {/* Column 4: Contact Info */}
         <div className={styles.contactCol}>
           <div className={styles.titleWrapper}>
             <h4 className={styles.colTitle}>Contact Info</h4>
@@ -201,11 +203,10 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom Bar with Powered by yuyonix */}
+      {/* Bottom Bar */}
       <div className={styles.bottomBar}>
         <p className={styles.copyrightText}>
-          © {new Date().getFullYear()} Balika. All rights reserved.{" "}
-          <span className={styles.poweredBy}>Powered by yuyonix</span>
+          © {new Date().getFullYear()} Balika. All rights reserved.
         </p>
       </div>
     </footer>

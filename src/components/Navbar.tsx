@@ -2,23 +2,37 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { X, ArrowRight } from "lucide-react";
 import styles from "./Navbar.module.css";
 
 const navLinks = [
-  { label: "HOME", href: "#", id: "home" },
-  { label: "ABOUT US", href: "#about", id: "about" },
-  { label: "PRODUCTS", href: "#products", id: "products" },
-  { label: "PROJECTS", href: "#projects", id: "projects" },
-  { label: "CONTACT US", href: "#contact", id: "contact" },
+  { label: "HOME", href: "/", id: "home" },
+  { label: "ABOUT US", href: "/about", id: "about" },
+  { label: "PRODUCTS", href: "/#products", id: "products" },
+  { label: "PROJECTS", href: "/projects", id: "projects" },
+  { label: "CONTACT US", href: "/contact", id: "contact" },
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("home");
 
   useEffect(() => {
+    if (!isHomePage) {
+      if (pathname.startsWith("/about")) {
+        setActiveItem("about");
+      } else if (pathname.startsWith("/projects")) {
+        setActiveItem("projects");
+      } else if (pathname.startsWith("/contact")) {
+        setActiveItem("contact");
+      }
+      return;
+    }
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
@@ -47,7 +61,7 @@ export default function Navbar() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isHomePage, pathname]);
 
   // Lock scroll when mobile drawer is open
   useEffect(() => {
@@ -75,16 +89,24 @@ export default function Navbar() {
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, id: string) => {
     setActiveItem(id);
     setIsDrawerOpen(false);
-    if (href === "#") {
+    if (href === "/" && isHomePage) {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: "smooth" });
+    } else if (href === "#contact") {
+      const contactEl = document.getElementById("contact");
+      if (contactEl) {
+        e.preventDefault();
+        contactEl.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
+
+  const showScrolledStyle = !isHomePage || isScrolled;
 
   return (
     <>
       <header
-        className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}
+        className={`${styles.header} ${showScrolledStyle ? styles.scrolled : ""}`}
         id="main-navbar"
       >
         {/* Mobile Left: Hamburger Menu Button (hidden on PC) */}
@@ -108,13 +130,13 @@ export default function Navbar() {
             <img
               src="/logo-white.png"
               alt="balika"
-              className={`${styles.logoImage} ${!isScrolled ? styles.visible : ""}`}
+              className={`${styles.logoImage} ${!showScrolledStyle ? styles.visible : ""}`}
               id="brand-logo-white"
             />
             <img
               src="/logo-dark.png"
               alt="balika"
-              className={`${styles.logoImage} ${isScrolled ? styles.visible : ""}`}
+              className={`${styles.logoImage} ${showScrolledStyle ? styles.visible : ""}`}
               id="brand-logo-dark"
             />
           </div>
@@ -141,7 +163,7 @@ export default function Navbar() {
         onClick={() => setIsDrawerOpen(false)}
       />
 
-      {/* Mobile Side Menu Drawer (Kept as it is for mobile) */}
+      {/* Mobile Side Menu Drawer */}
       <aside
         className={`${styles.drawer} ${isDrawerOpen ? styles.open : ""}`}
         aria-label="Mobile Navigation"
@@ -171,7 +193,7 @@ export default function Navbar() {
         </nav>
 
         <div className={styles.drawerFooter}>
-          <p>© {new Date().getFullYear()} Balika. All rights reserved. Powered by yuyonix</p>
+          <p>© {new Date().getFullYear()} Balika. All rights reserved.</p>
         </div>
       </aside>
     </>

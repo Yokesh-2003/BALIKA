@@ -1,0 +1,149 @@
+.quoteSection {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 140px 48px 70px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle architectural ambiance */
+.ambientLight {
+  position: absolute;
+  top: -80px;
+  left: 20%;
+  width: 500px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.03) 0%, rgba(255, 255, 255, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.subtleGrid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Grey Comma / Double Quotation Mark */
+.quoteMarksWrapper {
+  margin-bottom: 28px;
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.quoteMarksWrapper:hover {
+  transform: translateY(-2px);
+}
+
+.quoteIcon {
+  width: 72px;
+  height: auto;
+  color: #71717a; /* Sleek architectural grey */
+  display: block;
+}
+
+/* Text Content */
+.quoteContent {
+  max-width: 1080px;
+}
+
+.headline {
+  font-family: var(--font-primary);
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+  color: #111111;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+.headlineSpan {
+  color: #71717a; /* Grey accent for 'Through light.' */
+}
+
+.bodyText {
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.75;
+  color: #27272a;
+  letter-spacing: -0.2px;
+}
+
+.bodyText strong {
+  font-weight: 700;
+  color: #111111;
+}
+
+/* Subtle decorative bottom divider line */
+.dividerLine {
+  margin-top: 54px;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, #71717a 0%, rgba(113, 113, 122, 0.3) 15%, rgba(0, 0, 0, 0.06) 60%, transparent 100%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .quoteSection {
+    padding: 120px 32px 56px;
+  }
+
+  .headline {
+    font-size: 32px;
+  }
+
+  .bodyText {
+    font-size: 18px;
+  }
+
+  .quoteIcon {
+    width: 62px;
+  }
+}
+
+@media (max-width: 768px) {
+  .quoteSection {
+    padding: 105px 20px 48px;
+  }
+
+  .headline {
+    font-size: 26px;
+    line-height: 1.35;
+    margin-bottom: 18px;
+  }
+
+  .bodyText {
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .quoteIcon {
+    width: 52px;
+  }
+
+  .quoteMarksWrapper {
+    margin-bottom: 20px;
+  }
+
+  .dividerLine {
+    margin-top: 38px;
+  }
+}

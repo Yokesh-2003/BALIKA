@@ -1,0 +1,454 @@
+.projectsSection {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 130px 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background Accents */
+.ambientGlow {
+  position: absolute;
+  top: 0;
+  right: 15%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(176, 141, 87, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.subtleGrid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Header Area */
+.headerArea {
+  margin-bottom: 50px;
+  text-align: center;
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.taglineWrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.tagLine {
+  width: 24px;
+  height: 2px;
+  background-color: #71717a;
+}
+
+.tagText {
+  font-family: var(--font-primary);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #71717a;
+}
+
+.mainTitle {
+  font-family: var(--font-primary);
+  font-size: 44px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #111111;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.description {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  color: #52525b;
+}
+
+/* Gallery Grid */
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+/* Card */
+.projectCard {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: #f4f4f5;
+  aspect-ratio: 4 / 3;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.projectCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.projectImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+
+.projectCard:hover .projectImage {
+  transform: scale(1.08);
+}
+
+/* Overlay on Hover */
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.projectCard:hover .cardOverlay {
+  opacity: 1;
+}
+
+.expandIconWrapper {
+  align-self: flex-end;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transform: scale(0.85);
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.projectCard:hover .expandIconWrapper {
+  transform: scale(1);
+}
+
+.expandIconWrapper:hover {
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+.cardBottomInfo {
+  transform: translateY(10px);
+  transition: transform 0.3s ease;
+}
+
+.projectCard:hover .cardBottomInfo {
+  transform: translateY(0);
+}
+
+.projectIndex {
+  font-family: var(--font-primary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #dfba8a;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.cardTitle {
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #ffffff;
+  line-height: 1.35;
+}
+
+/* =========================================
+   LIGHTBOX / POPUP SCREEN MODAL
+   ========================================= */
+.lightboxModal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: rgba(10, 10, 12, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.25s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Top bar with counter & Close button */
+.lightboxHeader {
+  position: absolute;
+  top: 24px;
+  left: 32px;
+  right: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10001;
+  color: #ffffff;
+}
+
+.lightboxCounter {
+  font-family: var(--font-primary);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #c4c4c7;
+  text-transform: uppercase;
+}
+
+.closeBtn {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.closeBtn:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: rotate(90deg);
+}
+
+/* Center Content: Nav buttons + Image */
+.lightboxBody {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1300px;
+  height: 80vh;
+}
+
+.navArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
+  z-index: 10001;
+}
+
+.navArrow:hover {
+  background-color: #ffffff;
+  color: #000000;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.prevArrow {
+  left: 20px;
+}
+
+.nextArrow {
+  right: 20px;
+}
+
+.imageContainer {
+  position: relative;
+  max-width: 86vw;
+  max-height: 74vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fullImage {
+  max-width: 86vw;
+  max-height: 74vh;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  user-select: none;
+  animation: zoomIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.94);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Bottom bar in lightbox */
+.lightboxFooter {
+  position: absolute;
+  bottom: 24px;
+  left: 32px;
+  right: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #ffffff;
+  z-index: 10001;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.lightboxTitle {
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: 600;
+  color: #f4f4f5;
+  letter-spacing: 0.3px;
+}
+
+.lightboxHints {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: #8e8e93;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .galleryGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 992px) {
+  .projectsSection {
+    padding: 110px 32px 60px;
+  }
+
+  .galleryGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .mainTitle {
+    font-size: 36px;
+  }
+
+  .prevArrow {
+    left: 8px;
+  }
+
+  .nextArrow {
+    right: 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  .projectsSection {
+    padding: 100px 18px 48px;
+  }
+
+  .galleryGrid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .mainTitle {
+    font-size: 28px;
+  }
+
+  .description {
+    font-size: 15px;
+  }
+
+  .lightboxHeader {
+    top: 16px;
+    left: 18px;
+    right: 18px;
+  }
+
+  .lightboxFooter {
+    bottom: 16px;
+    left: 18px;
+    right: 18px;
+  }
+
+  .navArrow {
+    width: 42px;
+    height: 42px;
+  }
+
+  .prevArrow {
+    left: 4px;
+  }
+
+  .nextArrow {
+    right: 4px;
+  }
+
+  .lightboxHints {
+    display: none;
+  }
+}
