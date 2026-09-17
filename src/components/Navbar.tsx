@@ -9,7 +9,7 @@ import styles from "./Navbar.module.css";
 const navLinks = [
   { label: "HOME", href: "/", id: "home" },
   { label: "ABOUT US", href: "/about", id: "about" },
-  { label: "PRODUCTS", href: "/#products", id: "products" },
+  { label: "PRODUCTS", href: "/products", id: "products" },
   { label: "PROJECTS", href: "/projects", id: "projects" },
   { label: "CONTACT US", href: "/contact", id: "contact" },
 ];
@@ -25,6 +25,8 @@ export default function Navbar() {
     if (!isHomePage) {
       if (pathname.startsWith("/about")) {
         setActiveItem("about");
+      } else if (pathname.startsWith("/products")) {
+        setActiveItem("products");
       } else if (pathname.startsWith("/projects")) {
         setActiveItem("projects");
       } else if (pathname.startsWith("/contact")) {

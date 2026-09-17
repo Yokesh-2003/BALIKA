@@ -146,7 +146,7 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/#products" className={styles.navLink}>
+              <Link href="/products" className={styles.navLink}>
                 Products
               </Link>
             </li>
