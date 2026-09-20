@@ -84,7 +84,7 @@ export default function ProductsGallery() {
       <div className={styles.subtleGrid} aria-hidden="true" />
 
       <div className={styles.container}>
-        {/* Page Header: Title "OUR PRODUCTS" */}
+        {/* Page Header: Title "OUR PARTNERS" */}
         <div className={styles.headerArea}>
           <div className={styles.taglineWrapper}>
             <span className={styles.tagLine} />
@@ -92,7 +92,7 @@ export default function ProductsGallery() {
             <span className={styles.tagLine} />
           </div>
 
-          <h1 className={styles.mainTitle}>OUR PRODUCTS</h1>
+          <h1 className={styles.mainTitle}>OUR PARTNERS</h1>
 
           <p className={styles.description}>
             Discover our curated portfolio of world-class architectural luminaires, premium designer fixtures, and bespoke lighting systems engineered for exceptional spaces.
