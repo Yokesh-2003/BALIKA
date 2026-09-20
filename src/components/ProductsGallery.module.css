@@ -198,6 +198,106 @@
   color: #52525b;
 }
 
+/* Quick Jump Category Nav */
+.categoryNav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.categoryNavBtn {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-primary);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #52525b;
+  background-color: #f4f4f5;
+  border: 1px solid #e4e4e7;
+  padding: 9px 22px;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.categoryNavBtn:hover {
+  background-color: #111111;
+  border-color: #111111;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* Category Sections */
+.categorySection {
+  margin-bottom: 20px;
+  scroll-margin-top: 100px;
+}
+
+.categoryHeader {
+  text-align: center;
+  margin-bottom: 40px;
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.categoryBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-primary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #b08d57;
+  background: rgba(176, 141, 87, 0.08);
+  padding: 5px 14px;
+  border-radius: 9999px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(176, 141, 87, 0.2);
+}
+
+.categoryDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #b08d57;
+}
+
+.categoryTitle {
+  font-family: var(--font-primary);
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  text-transform: uppercase;
+  color: #111111;
+  margin-bottom: 12px;
+}
+
+.categorySubtitle {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.65;
+  color: #71717a;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* Category Divider */
+.categoryDivider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #e4e4e7 15%, #e4e4e7 85%, transparent);
+  margin: 70px 0 50px;
+}
+
 /* 3-Column Responsive Grid */
 .galleryGrid {
   display: grid;
@@ -589,6 +689,10 @@
     margin-top: 36px;
   }
 
+  .categoryTitle {
+    font-size: 26px;
+  }
+
   .galleryGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
@@ -637,6 +741,18 @@
 
   .introDivider {
     margin-bottom: 40px;
+  }
+
+  .categoryTitle {
+    font-size: 22px;
+  }
+
+  .categorySubtitle {
+    font-size: 13.5px;
+  }
+
+  .categoryDivider {
+    margin: 44px 0 36px;
   }
 
   .galleryGrid {

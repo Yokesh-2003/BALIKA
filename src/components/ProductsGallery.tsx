@@ -207,83 +207,204 @@ export default function ProductsGallery() {
           <p className={styles.description}>
             Discover our curated portfolio of world-class architectural luminaires, premium designer fixtures, and bespoke lighting systems engineered for exceptional spaces.
           </p>
+
+          {/* Quick Jump Category Navigation */}
+          <div className={styles.categoryNav}>
+            <a href="#architectural-lighting" className={styles.categoryNavBtn}>
+              Architectural Lighting ({productItems.filter((p) => p.id <= 5).length})
+            </a>
+            <a href="#decorative-lighting" className={styles.categoryNavBtn}>
+              Decorative Lighting ({productItems.filter((p) => p.id > 5).length})
+            </a>
+          </div>
         </div>
 
-        {/* Gallery Grid: All 54 Partner Images */}
-        <div className={styles.galleryGrid}>
-          {productItems.map((product, idx) => (
-            <div
-              key={product.id}
-              className={styles.productCard}
-              onClick={() => {
-                if (product.url) {
-                  window.open(product.url, "_blank", "noopener,noreferrer");
-                } else {
-                  openModal(idx);
-                }
-              }}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  if (product.url) {
-                    window.open(product.url, "_blank", "noopener,noreferrer");
-                  } else {
-                    openModal(idx);
-                  }
-                }
-              }}
-              aria-label={`Partner: ${product.title}`}
-            >
-              {/* Quick Preview Button */}
-              <button
-                type="button"
-                className={styles.previewBtn}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  openModal(idx);
-                }}
-                aria-label={`Enlarge ${product.title} logo`}
-                title="View enlarged logo"
-              >
-                <Maximize2 size={16} />
-              </button>
-
-              {/* Logo Area */}
-              <div className={styles.imageWrapper}>
-                <img
-                  src={product.src}
-                  alt={product.alt}
-                  className={styles.productImage}
-                  loading={idx < 9 ? "eager" : "lazy"}
-                  draggable={false}
-                />
-              </div>
-
-              {/* Visit Button Below Image */}
-              <div className={styles.cardActionArea}>
-                {product.url ? (
-                  <a
-                    href={product.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.visitButton}
-                    onClick={(e) => e.stopPropagation()}
-                    aria-label={`Visit ${product.title} official website`}
-                  >
-                    <span>Visit Website</span>
-                    <ExternalLink size={14} className={styles.visitIcon} />
-                  </a>
-                ) : (
-                  <span className={styles.comingSoonBadge}>
-                    <span>Coming Soon</span>
-                  </span>
-                )}
-              </div>
+        {/* 1. ARCHITECTURAL LIGHTING SECTION (Items 1 to 5) */}
+        <section id="architectural-lighting" className={styles.categorySection} aria-label="Architectural Lighting Partners">
+          <div className={styles.categoryHeader}>
+            <div className={styles.categoryBadge}>
+              <span className={styles.categoryDot} />
+              <span>CATEGORY 01</span>
             </div>
-          ))}
-        </div>
+            <h2 className={styles.categoryTitle}>ARCHITECTURAL LIGHTING</h2>
+            <p className={styles.categorySubtitle}>
+              Precision-engineered technical luminaires, high-performance optical systems, and integrated architectural fixtures designed for exceptional environments.
+            </p>
+          </div>
+
+          <div className={styles.galleryGrid}>
+            {productItems.filter((p) => p.id <= 5).map((product) => {
+              const globalIdx = product.id - 1;
+              return (
+                <div
+                  key={product.id}
+                  className={styles.productCard}
+                  onClick={() => {
+                    if (product.url) {
+                      window.open(product.url, "_blank", "noopener,noreferrer");
+                    } else {
+                      openModal(globalIdx);
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      if (product.url) {
+                        window.open(product.url, "_blank", "noopener,noreferrer");
+                      } else {
+                        openModal(globalIdx);
+                      }
+                    }
+                  }}
+                  aria-label={`Partner: ${product.title}`}
+                >
+                  {/* Quick Preview Button */}
+                  <button
+                    type="button"
+                    className={styles.previewBtn}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      openModal(globalIdx);
+                    }}
+                    aria-label={`Enlarge ${product.title} logo`}
+                    title="View enlarged logo"
+                  >
+                    <Maximize2 size={16} />
+                  </button>
+
+                  {/* Logo Area */}
+                  <div className={styles.imageWrapper}>
+                    <img
+                      src={product.src}
+                      alt={product.alt}
+                      className={styles.productImage}
+                      loading="eager"
+                      draggable={false}
+                    />
+                  </div>
+
+                  {/* Visit Button Below Image */}
+                  <div className={styles.cardActionArea}>
+                    {product.url ? (
+                      <a
+                        href={product.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.visitButton}
+                        onClick={(e) => e.stopPropagation()}
+                        aria-label={`Visit ${product.title} official website`}
+                      >
+                        <span>Visit Website</span>
+                        <ExternalLink size={14} className={styles.visitIcon} />
+                      </a>
+                    ) : (
+                      <span className={styles.comingSoonBadge}>
+                        <span>Coming Soon</span>
+                      </span>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* Category Divider */}
+        <div className={styles.categoryDivider} aria-hidden="true" />
+
+        {/* 2. DECORATIVE LIGHTING SECTION (Items 6 to 54) */}
+        <section id="decorative-lighting" className={styles.categorySection} aria-label="Decorative Lighting Partners">
+          <div className={styles.categoryHeader}>
+            <div className={styles.categoryBadge}>
+              <span className={styles.categoryDot} />
+              <span>CATEGORY 02</span>
+            </div>
+            <h2 className={styles.categoryTitle}>DECORATIVE LIGHTING</h2>
+            <p className={styles.categorySubtitle}>
+              Sculptural masterpieces, bespoke artisan pendants, handcrafted glass luminaires, and luxury decorative statement fixtures.
+            </p>
+          </div>
+
+          <div className={styles.galleryGrid}>
+            {productItems.filter((p) => p.id > 5).map((product) => {
+              const globalIdx = product.id - 1;
+              return (
+                <div
+                  key={product.id}
+                  className={styles.productCard}
+                  onClick={() => {
+                    if (product.url) {
+                      window.open(product.url, "_blank", "noopener,noreferrer");
+                    } else {
+                      openModal(globalIdx);
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      if (product.url) {
+                        window.open(product.url, "_blank", "noopener,noreferrer");
+                      } else {
+                        openModal(globalIdx);
+                      }
+                    }
+                  }}
+                  aria-label={`Partner: ${product.title}`}
+                >
+                  {/* Quick Preview Button */}
+                  <button
+                    type="button"
+                    className={styles.previewBtn}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      openModal(globalIdx);
+                    }}
+                    aria-label={`Enlarge ${product.title} logo`}
+                    title="View enlarged logo"
+                  >
+                    <Maximize2 size={16} />
+                  </button>
+
+                  {/* Logo Area */}
+                  <div className={styles.imageWrapper}>
+                    <img
+                      src={product.src}
+                      alt={product.alt}
+                      className={styles.productImage}
+                      loading={globalIdx < 12 ? "eager" : "lazy"}
+                      draggable={false}
+                    />
+                  </div>
+
+                  {/* Visit Button Below Image */}
+                  <div className={styles.cardActionArea}>
+                    {product.url ? (
+                      <a
+                        href={product.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.visitButton}
+                        onClick={(e) => e.stopPropagation()}
+                        aria-label={`Visit ${product.title} official website`}
+                      >
+                        <span>Visit Website</span>
+                        <ExternalLink size={14} className={styles.visitIcon} />
+                      </a>
+                    ) : (
+                      <span className={styles.comingSoonBadge}>
+                        <span>Coming Soon</span>
+                      </span>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
       </div>
 
       {/* POPUP / LIGHTBOX MODAL */}
